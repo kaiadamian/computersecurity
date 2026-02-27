@@ -183,7 +183,7 @@ if __name__ == '__main__':
         print(f'K{n+1} = {KEYS[n]}')
     
     # encode each 64-bit block of data
-    # apply the initial permutation to the ciphertext M
+    # apply the initial permutation to the ciphertext CT
     IP = permute(CT, initial_permutation)
 
     # split the initial permutation into L0 and R0, each 32 bits
