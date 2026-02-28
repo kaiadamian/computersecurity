@@ -1,4 +1,3 @@
-import string
 from collections import Counter, defaultdict
 import q2
 
