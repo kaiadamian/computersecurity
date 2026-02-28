@@ -19,7 +19,7 @@ def PHI(i, f):
     return total
 
 def main(ciphertext):
-    # compute f(c)
+    # compute f(c) for each letter
     f = {letter:0 for letter in string.ascii_lowercase}
     for c in ciphertext.lower():
         f[c] += 1

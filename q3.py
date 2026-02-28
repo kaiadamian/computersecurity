@@ -20,13 +20,16 @@ def kasiski(ciphertext):
     kasiski_table = []
     for letters, starting_positions in substring_starting_positions.items():
         if len(starting_positions) <= 1:
+            # skip non-repeating substrings
             continue
         else:
+            # go through all the starting positions of each substring
             for i in range(len(starting_positions) - 1):
                 start = starting_positions[i]
                 end = starting_positions[i+1]
                 gap_length = end - start
                 factors_of_gaplength = [i for i in range(2, gap_length + 1) if gap_length % i == 0]
+                # add the values to the table
                 kasiski_table.append((letters, start, end, gap_length, factors_of_gaplength))
     return kasiski_table
 def print_kasiski(kasiski_table):
@@ -42,7 +45,7 @@ def print_kasiski(kasiski_table):
     factor_counts = Counter(factors)
     print(f'Most Common Factors: {factor_counts.most_common(2)}')
 def div_into_cols(ciphertext, key_len):
-    columns = ["" for n in range(key_len)]
+    columns = ["" for _ in range(key_len)]
     for i, char in enumerate(ciphertext):
         columns[i % key_len] += char
     return columns
@@ -68,7 +71,6 @@ if __name__ == '__main__':
         print(f'Alphabet #{i}')
         print(c)
         print(f'IC = {calculate_IC(c, len(c))}')
-        
     # treat each column as its own caesar cipher to find each letter of the key
     print(f'\nTreat each column as its own Caesar Cipher:')
     keys = [None] * key_len

@@ -199,10 +199,12 @@ if __name__ == '__main__':
     for n in range(16):
         # obtain the values for Li and Ri
         L[n+1] = R[n]
+        f_output = f(R[n], KEYS[15-n])
+        R[n+1] = xor(L[n], f_output)
+        print(f'f{n+1} = {f_output}')
         print(f'L{n+1} = {L[n+1]}')
-        R[n+1] = xor(L[n], f(R[n], KEYS[15-n]))
-        print(f'f{n+1} = {R[n+1]}')
         print(f'R{n+1} = {R[n+1]}')
+        
     # reverse the order of the 16th block -> R16L16
     R16L16 = R[16] + L[16]
     # apply the final permutation IP^-1 to R16L16 to obtain the binary message
